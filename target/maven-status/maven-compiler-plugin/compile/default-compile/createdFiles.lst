@@ -1,0 +1,15 @@
+fr/insalyon/dasi/ihm/web/action/GetTop5Action.class
+fr/insalyon/dasi/ihm/web/action/DemanderConsultationAction.class
+fr/insalyon/dasi/ihm/web/serialisation/GetTop5Serialisation.class
+fr/insalyon/dasi/ihm/web/serialisation/DemanderConsultationSerialisation.class
+fr/insalyon/dasi/ihm/web/action/InscriptionClientAction.class
+fr/insalyon/dasi/ihm/web/action/GetPredictionAction.class
+fr/insalyon/dasi/ihm/web/action/FinirConsultationEmployeAction.class
+fr/insalyon/dasi/ihm/web/serialisation/ConnecterUtilisateurSerialisation.class
+fr/insalyon/dasi/ihm/web/serialisation/InscriptionClientSerialisation.class
+fr/insalyon/dasi/ihm/web/serialisation/Serialisation.class
+fr/insalyon/dasi/ihm/web/action/Action.class
+fr/insalyon/dasi/ihm/web/ActionServlet.class
+fr/insalyon/dasi/ihm/web/serialisation/GetPredictionSerialisation.class
+fr/insalyon/dasi/ihm/web/action/ConnecterUtilisateurAction.class
+fr/insalyon/dasi/ihm/web/serialisation/FinirConsultationEmployeSerialisation.class
