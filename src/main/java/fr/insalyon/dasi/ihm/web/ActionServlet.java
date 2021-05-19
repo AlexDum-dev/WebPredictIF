@@ -63,6 +63,7 @@ public class ActionServlet extends HttpServlet {
         
         switch(todo){
             case "connecter":{
+                System.out.println("Connecter");
                 action = new ConnecterUtilisateurAction();
                 serialisation = new ConnecterUtilisateurSerialisation();
             }
