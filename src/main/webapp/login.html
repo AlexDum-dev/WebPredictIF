@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="name" content="Basma Belahcen's Portfolio">
     <meta name="robot" content="noindex, nofollow">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--<script src="javascript/gen_validatorv4.js" type="text/javascript"></script>-->
+
   </header>
 
   <body>
@@ -22,8 +25,10 @@
 
     <h1 class="co">Prédict'IF</h1>
     <h3 class="con"> Connexion</h3>
+    
+    <p id="notification"> Veuillez saisir votre identifiant (Adresse mail et mot de passe)</p>
     <div class="container">
-          <form methode ="post" name="myemailform" action="form-to-email.php">
+          <form methode ="post" id="myemailform" >
 
             <label for="email">Email Address :<br></label>
             <input type="text" id="email" name="Email" placeholder="Entrez votre Email">
@@ -35,7 +40,7 @@
 
             <br>
              <div class="connexion">
-                <a class="active" href="login.html">Connexion</a>
+                <input type="submit" name="submit" value="Submit">
             </div>
 
           </form>
@@ -47,26 +52,26 @@
         <div class="connexion">
                 <a class="active" href="Inscription.html">Inscription</a>
             </div>
-          <script language="JavaScript">
+          <!--<script type="text/javascript">
             var frmvalidator  = new Validator("myemailform");
             frmvalidator.addValidation("motdepasse","req","Veuillez entrer votre Mot de passe"); 
             frmvalidator.addValidation("email","req","Veuillez entrer votre adresse Mail"); 
             frmvalidator.addValidation("email","email","Veuillez entrer une adresse Mail valide"); 
-          </script>
+          </script>-->
           
     </div>
 </body>
 
         <script>
             $(document).ready( function () {
-                $('#bouton-connexion').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+                $('#submit').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
 
                     console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
                     $('#notification').html("Connexion..."); // Message pour le paragraphe de notification
 
                     // Récupération de la valeur des champs du formulaire
-                    var champLogin = $('#champ-login').val();
-                    var champPassword = $('#champ-password').val();
+                    var champLogin = $('#email').val();
+                    var champPassword = $('#motdepasse').val();
 
                     // Appel AJAX
                     $.ajax({
@@ -82,10 +87,13 @@
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
                         if (response.connexion) {
-                            $('#notification').html("Connexion OK");  // Message pour le paragraphe de notification
-                            // TODO: afficher les informations du client dans la notification
-                            // Exemple: Connexion de Ada Lovelace (ID 1)
-                            $('#ajoutDesInfos').html("Connexion de "+response.client.id);
+                            if(response.type ==="client"){
+                                window.location.replace("client.html");
+
+                            }else{
+                                window.location.replace("employe.html");
+
+                            }
                         }
                         else {
                             $('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
@@ -102,4 +110,8 @@
             });
         </script>
     </body>
+    <footer>
+    <hr>
+      <code> Copyright (c) 2021 Hugo LE BON, Hugo LE BON, Hugo LE BON, Hugo LE BON </code>
+  </footer>
 </html>
