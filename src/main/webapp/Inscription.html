@@ -1,0 +1,94 @@
+<!doctype html>
+
+<!-- this is a comment for human! -->
+
+<html lang="en">
+
+  <header>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="css/masterIndex.css">
+    <link rel="FaviconIcon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="name" content="Basma Belahcen's Portfolio">
+    <meta name="robot" content="noindex, nofollow">
+  </header>
+
+  <body>
+    <div class="topnav">
+      <a class="active" href="index.html">Accueil</a>
+    </div>
+
+    <h1 class="co">Prédict'IF</h1>
+    <h3 class="con"> Inscription</h3>
+    <div class="container">
+          <form methode ="post" name="myemailform" action="form-to-email.php">
+              
+            <label for="prenom">Prénom :<br></label>
+            <input type="text" id="prenom" name="Prenom" placeholder="Entrez votre Prénom">
+            
+            <br>
+            
+            <label for="nom">Nom :<br></label>
+            <input type="text" id="nom" name="Nom" placeholder="Entrez votre Nom">
+            
+            <br>
+            
+            <label for="date">Date de Naissance :<br></label>
+            <input type="date" id="date" name="date" placeholder="Entrez votre Date de Naissance">
+            
+            <br>
+
+            <label for="email">Email Address :<br></label>
+            <input type="text" id="email" name="Email" placeholder="Entrez votre Email">
+
+            <br>
+            
+            <label for="num">Numéro de Télephone :<br></label>
+            <input type="text" id="num" name="Num" placeholder="Entrez votre Numéro de télephone">
+
+            <br>
+
+            <label for="motdepasse">Mot de passe : <br> </label>
+            <input type="password" id="motdepasse" name="motdepasse" placeholder="">
+
+            <br>
+            
+            <label for="confmotdepasse">Confirmez Mot de passe : <br> </label>
+            <input type="password" id="confmotdepasse" name="Confmotdepasse" oninput="check(this")>
+
+            <br>
+            <script language='javascript' type='text/javascript'>
+                function check(input) {
+                    if (input.value != document.getElementById('motdepasse').value) {
+                        input.setCustomValidity('les deux mots de passes doivent être identiques');
+                    } else {
+                        // input is valid -- reset the error message
+                        input.setCustomValidity('');
+                    }
+                }
+            </script>
+            <br>
+             <div class="connexion">
+                <a class="active" href="client.html">Inscription</a>
+            </div>
+
+          </form>
+
+          <script language="JavaScript">
+            var frmvalidator  = new Validator("myemailform");
+            frmvalidator.addValidation("confmotdepasse","req","Veuillez rentrer votre Mot de passe"); 
+            frmvalidator.addValidation("motdepasse","req","Veuillez entrer votre Mot de passe"); 
+            frmvalidator.addValidation("email","req","Veuillez entrer votre adresse Mail"); 
+            frmvalidator.addValidation("nom","req","Veuillez entrer votre nom"); 
+            frmvalidator.addValidation("prenom","req","Veuillez entrer votre prénom"); 
+            frmvalidator.addValidation("num","req","Veuillez entrer votre numéro de télephone"); 
+            frmvalidator.addValidation("email","email","Veuillez entrer une adresse Mail valide"); 
+          </script>
+          
+    </div>
+</body>
+
+    </body>
+</html>
