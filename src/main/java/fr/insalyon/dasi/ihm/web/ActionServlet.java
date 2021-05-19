@@ -75,6 +75,7 @@ public class ActionServlet extends HttpServlet {
             break;
             
             case "demanderConsult":{
+                
                 action = new DemanderConsultationAction();
                 serialisation = new DemanderConsultationSerialisation();
             }
@@ -86,7 +87,7 @@ public class ActionServlet extends HttpServlet {
             }
             break;
             
-            case "getPrediction:":{
+            case "getPrediction":{
                 action = new GetPredictionAction();
                 serialisation = new GetPredictionSerialisation();
             }

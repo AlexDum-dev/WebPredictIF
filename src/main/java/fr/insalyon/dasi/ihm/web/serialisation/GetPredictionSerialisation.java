@@ -29,8 +29,8 @@ public class GetPredictionSerialisation extends Serialisation{
         String predictSante = (String) request.getAttribute("Sante");
         
         container.addProperty("Amour",predictAmour);
-        container.addProperty("Amour",predictTravail);
-        container.addProperty("Amour",predictSante);
+        container.addProperty("Travail",predictTravail);
+        container.addProperty("Sante",predictSante);
         
         //Formatage de la structure de données en JSON : 
         PrintWriter out = this.getWriter(response);

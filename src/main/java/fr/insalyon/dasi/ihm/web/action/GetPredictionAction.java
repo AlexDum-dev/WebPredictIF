@@ -27,8 +27,10 @@ public class GetPredictionAction extends Action{
         int noteAmour = Integer.parseInt(request.getParameter("noteAmour"));
         int noteTravail = Integer.parseInt(request.getParameter("noteTravail"));
         int noteSante = Integer.parseInt(request.getParameter("noteSante"));
+        System.out.println(couleur+animal+noteAmour+noteTravail+noteSante);
         List <String> predictions;
         try {
+            System.out.println(couleur+animal+noteAmour+noteTravail+noteSante);
             predictions = service.getPredictions(couleur, animal, noteAmour, noteTravail, noteSante);
             request.setAttribute("Amour", predictions.get(0));
             request.setAttribute("Travail", predictions.get(1));

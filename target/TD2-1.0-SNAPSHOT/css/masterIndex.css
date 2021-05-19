@@ -1,0 +1,120 @@
+
+/* Add a black background color to the top navigation */
+/* .deconnexion {
+    background-color: #c2ddef;
+    text-align: center;
+    overflow: hidden;
+  }*/
+
+/*PAGE EMPLOYE*/
+
+/* Style the links inside the navigation bar */
+  .deconnexion a {
+    float: right;
+    color: #2596be;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+/* Change the color of links on hover */
+  .deconnexion a:hover {
+    background-color: #09b5c3;
+    color: black;
+  }
+
+/* Add a color to the active/current link */
+  .deconnexion a.active {
+    background-color: purple;
+    color: white;
+  }
+
+/*  a {
+    color: blue;/* set the text color to blue here 
+    text-decoration: none; /* This means we do not want hyperlinks to be underlined 
+  } */
+
+/*   a:hover {
+    color: red;/* set the text color to red here 
+    text-decoration: none; /* This means we do not want hyperlinks to be underlined 
+  }*/
+
+  body {
+    
+    background-color: #dddadd;/* set the background color here */
+    color: black;/* set the text color to black here */
+    font-family: Arial, Helvetica, sans-serif; /* set the font here */
+    text-align: center;
+   }
+
+
+/*  footer {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }*/
+
+  h1 { 
+    font-family : "Papyrus", "Lucida Handwriting", "Times New Roman";
+    font-size : 800%;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+   }
+
+
+  h2 {
+    font-family : "Times New Roman";
+    font-size : 200%;
+    color: #000000;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  h3,h4,h5 {
+    font-family : "Lucida Handwriting", "Times New Roman";
+    font-size : 200%;
+    color : purple;
+	text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+
+
+/*Historique et profil astral*/
+
+  section {
+    display: grid;
+    justify-content: center;
+    grid-gap: 50rem;
+    align-content: center;
+    grid-auto-flow: column;
+  }
+
+  .grid div{
+    text-align: left;
+    border: 1px;
+    border-color: #2596be;
+    padding: 2px;
+  }
+
+/*Boutons*/
+	button {
+	    float: center;
+		color: white;
+		background-color : purple;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;		
+	}
+	
+	.bouton-consultation :hover {
+		background-color: #09b5c3;
+		color: black;
+    }
+	
+	
+	
