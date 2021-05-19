@@ -6,10 +6,12 @@
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/Action.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/ActionServlet.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/ConnecterUtilisateurSerialisation.java
+/home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/GetProfilEmpSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/FinirConsultationEmployeAction.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/ConnecterUtilisateurAction.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/InscriptionClientAction.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/InscriptionClientSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/DemanderConsultationSerialisation.java
+/home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/GetProfilEmpAction.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/GetPredictionAction.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/DemanderConsultationAction.java

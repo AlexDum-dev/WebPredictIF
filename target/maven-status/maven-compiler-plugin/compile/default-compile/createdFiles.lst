@@ -11,5 +11,7 @@ fr/insalyon/dasi/ihm/web/serialisation/Serialisation.class
 fr/insalyon/dasi/ihm/web/action/Action.class
 fr/insalyon/dasi/ihm/web/ActionServlet.class
 fr/insalyon/dasi/ihm/web/serialisation/GetPredictionSerialisation.class
+fr/insalyon/dasi/ihm/web/serialisation/GetProfilEmpSerialisation.class
+fr/insalyon/dasi/ihm/web/action/GetProfilEmpAction.class
 fr/insalyon/dasi/ihm/web/action/ConnecterUtilisateurAction.class
 fr/insalyon/dasi/ihm/web/serialisation/FinirConsultationEmployeSerialisation.class

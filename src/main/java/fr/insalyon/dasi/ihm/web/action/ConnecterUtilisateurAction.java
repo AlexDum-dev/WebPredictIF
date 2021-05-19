@@ -24,9 +24,10 @@ public class ConnecterUtilisateurAction extends Action {
         Service service = new Service();
         Utilisateur result = service.authentifierUtilisateur(login, password);
         
-        System.out.println(result);
+        System.out.println(result.getNom());
         request.setAttribute("user", result);
         request.getSession(true).setAttribute("user", result);
+      
        
     }
 }

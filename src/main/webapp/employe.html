@@ -8,10 +8,7 @@
     <meta charset="UTF-8">
     <title> Bienvenue </title>
     <link rel="stylesheet" href="css/masterIndex.css">
-    <link rel="FaviconIcon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut" href="favicon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="robot" content="noindex, nofollow">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   </header> 
 
   <body>
@@ -35,42 +32,46 @@
     
     <div>
         
-        <h2> Client : <br>
-            Vous êtes :
-        </h2>
+        <h2> Employe :</h2> 
+                
+        <br>
+        
+        <h2> Vous êtes : </h2> <div id="prenomEmp"></div>
     </div>
     
-    <section class="grid">
-      <div>
-        <h3>Historique</h3>
-      </div>
-        
-       <div>
-        <h3>Profil Astral</h3>
-       </div>  
-    </section>
    
     <button class="bouton-consultation">Je suis pret </button>
     <br>
     <br>
     <button class="bouton-aide">Besoin d'aide?</button>
     
-    <div>
-        <h4>
-                <br> Notes: <br>
-        </h4>     
-            Amour : <input type="text" id="champ-amour" size="5" /> <br/>
-            Santé : <input type="text" id="champ-santé" size="5"  /> <br/>
-            Travail : <input type="text" id="champ-travail" size="5"  /> <br/>
-            <br/>
-            <button id="bouton-confirmer">Confirmer</button>
+    <script>
+            $(document).ready( function () {
+                                
+                   
 
-
-        <h5> Prédictions </h5> 
-            Amour : <br>
-            Santé : <br>
-            Travail : <br>
-    </div>
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'profilEmp',
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        $('#prenomEmp').html(response.prenom+" "+response.nom);
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                    });
+                
+            });
+        </script>
     
   </body>
 

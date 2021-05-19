@@ -16,12 +16,14 @@ import fr.insalyon.dasi.ihm.web.action.ConnecterUtilisateurAction;
 import fr.insalyon.dasi.ihm.web.action.DemanderConsultationAction;
 import fr.insalyon.dasi.ihm.web.action.FinirConsultationEmployeAction;
 import fr.insalyon.dasi.ihm.web.action.GetPredictionAction;
+import fr.insalyon.dasi.ihm.web.action.GetProfilEmpAction;
 import fr.insalyon.dasi.ihm.web.action.GetTop5Action;
 import fr.insalyon.dasi.ihm.web.action.InscriptionClientAction;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterUtilisateurSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DemanderConsultationSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.FinirConsultationEmployeSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.GetPredictionSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.GetProfilEmpSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.GetTop5Serialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscriptionClientSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
@@ -99,6 +101,11 @@ public class ActionServlet extends HttpServlet {
                 serialisation = new GetTop5Serialisation();
             }
             break;
+            
+            case "profilEmp":{
+                action = new GetProfilEmpAction();
+                serialisation = new GetProfilEmpSerialisation();
+            }
         }
         
         action.executer(request);
