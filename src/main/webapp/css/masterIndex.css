@@ -237,4 +237,43 @@ footer{
    margin-top : 3rem;
 }
 
+/*PAGE Client*/
+
+.medium {
+    display: grid;
+    justify-content: center;
+    grid-gap: 1rem;
+    align-content: center;
+    grid-auto-flow: column;
+  }
+
+ .medium div{
+    text-align: left;
+    border: 1px;
+    border-color: #2596be;
+    padding: 5px;
+  }
+
+  h4 {
+    font-family : "Lucida Handwriting", "Times New Roman";
+    font-size : 200%;
+    color : purple;
+	text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+.bouton-RDV{
+
+	font-size: 30px;
+}
+
+  .bienvenue { 
+    font-family : "Papyrus", "Lucida Handwriting", "Times New Roman";
+    font-size : 800%;
+    color: white;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+   }
 
