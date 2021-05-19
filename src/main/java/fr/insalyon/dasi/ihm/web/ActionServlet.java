@@ -19,6 +19,8 @@ import fr.insalyon.dasi.ihm.web.action.GetPredictionAction;
 import fr.insalyon.dasi.ihm.web.action.GetProfilEmpAction;
 import fr.insalyon.dasi.ihm.web.action.GetTop5Action;
 import fr.insalyon.dasi.ihm.web.action.InscriptionClientAction;
+import fr.insalyon.dasi.ihm.web.action.StatEmployeAction;
+import fr.insalyon.dasi.ihm.web.action.StatMediumAction;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterUtilisateurSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DemanderConsultationSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.FinirConsultationEmployeSerialisation;
@@ -27,6 +29,8 @@ import fr.insalyon.dasi.ihm.web.serialisation.GetProfilEmpSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.GetTop5Serialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscriptionClientSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.StatEmployeSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.StatMediumSerialisation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -105,6 +109,17 @@ public class ActionServlet extends HttpServlet {
             case "profilEmp":{
                 action = new GetProfilEmpAction();
                 serialisation = new GetProfilEmpSerialisation();
+            }
+            
+            case "statsEmploye":{
+                action = new StatEmployeAction();
+                serialisation = new StatEmployeSerialisation();
+            }
+            break;
+            
+            case "statsMedium":{
+                action = new StatMediumAction();
+                serialisation = new StatMediumSerialisation();
             }
         }
         

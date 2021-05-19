@@ -2,6 +2,7 @@
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/GetTop5Serialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/FinirConsultationEmployeSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/GetTop5Action.java
+/home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/StatMediumSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/Serialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/Action.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/ActionServlet.java
@@ -13,5 +14,8 @@
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/InscriptionClientSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/DemanderConsultationSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/GetProfilEmpAction.java
+/home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/StatEmployeAction.java
+/home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/StatMediumAction.java
+/home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/serialisation/StatEmployeSerialisation.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/GetPredictionAction.java
 /home/alex/NetBeansProjects/TD2/src/main/java/fr/insalyon/dasi/ihm/web/action/DemanderConsultationAction.java
