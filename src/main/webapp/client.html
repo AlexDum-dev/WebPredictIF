@@ -8,10 +8,7 @@
     <meta charset="UTF-8">
     <title> Bienvenue </title>
     <link rel="stylesheet" href="css/masterIndex.css">
-    <link rel="FaviconIcon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut" href="favicon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="robot" content="noindex, nofollow">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   </header> 
 
   <body>
@@ -29,13 +26,18 @@
         <br>
         <br>
         <h1 class = "bienvenue"> Bienvenue </h1>
-
+        <div id="presentationClient"></div>
       <br>
     </div>
     
     <div>
         
         <h2> <U> Profil Astral </U> </h2>
+        <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
+        <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
+        <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
+        <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
+        
     </div>
     
     <section class="grid">
@@ -47,32 +49,207 @@
    <section class = "medium">
     <div>
         <h4> Mme Irma</h4>
-        <img  src="images/madame_irma.png" width="100%" alt="banner">
+        <button id="bouton-RDVIrma"><img  src="images/madame_irma.png" width="100%" alt="banner"></button>
     </div>
 
     <div>
         <h4> Mr M</h4>
-        <img src="images/MonsieurM.jpg" width="100%" alt="banner">
+        <button id="bouton-RDVM"><img src="images/MonsieurM.jpg" width="100%" alt="banner"></button>
     </div>
 
     <div>
         <h4> Serena </h4>
-        <img src="images/Serena.jpg" width="100%" alt="banner">
+        <button id="bouton-RDVSerena"><img src="images/Serena.jpg" width="100%" alt="banner"></button>
     </div>
 
     <div>
         <h4> Gwenaëlle </h4>
-        <img src="images/gwen.png" width="100%" alt="banner">
+        <button id="bouton-RDVGwen"><img src="images/gwen.png" width="100%" alt="banner"></button>
     </div>
 
     <div>
         <h4> Endora </h4>
-        <img src="images/Endora.png" width="100%" alt="banner">
+        <button id="bouton-RDVEndora"><img src="images/Endora.png" width="100%" alt="banner"></button>
     </div>
     </section>    
    
-    <button class="bouton-RDV"> Demander RDV </button>
+    <!--<button class="bouton-RDV"> Demander RDV </button>-->
     <br>
+    
+        <script>
+            $(document).ready( function () {
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'profilClient'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        $('#presentationClient').html(response.prenom+" "+response.nom);
+                        $('#signeZodiaque').html(response.signeZodiaque);
+                        $('#signeAstroChinois').html(response.signeAstroChinois);
+                        $('#couleurPorteBonheur').html(response.couleurPorteBonheur);
+                        $('#animalTotem').html(response.animalTotem);
+                        
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée             
+                    });
+                    
+                    //Consultation Irma
+                $('#bouton-RDVIrma').click (function () {
+                    // Fonction appelée lors du clic sur le bouton
+                    //alert("Prise de rendez vous avec Irma");
+                    console.log("clic sur le bouton rendez vous Irma"); // LOG dans Console Javascript
+                    
+                    var denom = "Irma";
+                    
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demanderConsult',
+                            denomination: denom
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        alert("Vous avez demander un rendez vous avec Irma veuillez attendre..."); // LOG dans Console Javascript
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        //alert("AA");
+                    });
+                });
+                
+                //Consultation Mr M
+                $('#bouton-RDVM').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+                    //alert("Prise de rendez vous avec Irma");
+                    console.log("clic sur le bouton rendez vous mr M"); // LOG dans Console Javascript
+                    
+                    var denom = "Mr M";
+                    
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demanderConsult',
+                            denomination: denom
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        alert("Vous avez demander un rendez vous avec Mr M veuillez attendre..."); // LOG dans Console Javascript
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        //alert("AA");
+                    });
+                });
+                
+                //Consultation Serena
+                $('#bouton-RDVSerena').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+                    //alert("Prise de rendez vous avec Irma");
+                    console.log("clic sur le bouton rendez vous Serena"); // LOG dans Console Javascript
+                    
+                    var denom = "Serena";
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demanderConsult',
+                            denomination: denom
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        alert("Vous avez demander un rendez vous avec Serena veuillez attendre..."); // LOG dans Console Javascript
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        //alert("AA");
+                    });
+                });
+                
+                //Consultation Gwen                
+                $('#bouton-RDVGwen').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+                    //alert("Prise de rendez vous avec Irma");
+                    console.log("clic sur le bouton rendez vous Gwenaëlle"); // LOG dans Console Javascript
+                    
+                    var denom = "Gwenaelle";
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demanderConsult',
+                            denomination: denom
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        alert("Vous avez demander un rendez vous avec Gwenaëlle veuillez attendre..."); // LOG dans Console Javascript
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        //alert("AA");
+                    });
+                });
+                
+                //Consultation Endora
+                $('#bouton-RDVEndora').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+                    //alert("Prise de rendez vous avec Irma");
+                    console.log("clic sur le bouton rendez vous Endora"); // LOG dans Console Javascript
+                    var denom = "Endora";                          
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demanderConsult',
+                            denomination: denom
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        alert("Vous avez demander un rendez vous avec Endora veuillez attendre..."); // LOG dans Console Javascript
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        //alert("AA");
+                    });
+                });
+                
+            });
+    </script>
+    
+    
+    
     
   </body>
 
