@@ -6,6 +6,7 @@
 
   <header>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10" />
     <title> Bienvenue </title>
     <link rel="stylesheet" href="css/masterIndex.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -39,17 +40,18 @@
         <h2> Vous êtes : </h2> <div id="prenomEmp"></div>
     </div>
     
-   
-    <button class="bouton-consultation">Je suis pret </button>
+    <div id="notif"></div>
+    <div id="nomClient"></div>
+    <h3>Historique</h3>
+    <div id="historique"></div>
+    <button id="ready" class="bouton-consultation" style="display: none;">Je suis pret</button>
     <br>
     <br>
-    <button class="bouton-aide">Besoin d'aide?</button>
-    
+    <!--<button class="bouton-aide">Besoin d'aide?</button>-->
+
     <script>
             $(document).ready( function () {
                                 
-                   
-
                     // Appel AJAX
                     $.ajax({
                         url: './ActionServlet',
@@ -62,6 +64,15 @@
                     .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
                         console.log('Response',response); // LOG dans Console Javascript
                         $('#prenomEmp').html(response.prenom+" "+response.nom);
+                        
+                        if (response.consultation) {
+                            alert("Vous avez une nouvelle demande de consultation");
+                            $('#ready').show();
+                            $('#ready').on('click', function (){
+                                window.location.replace("consultation.html");
+                            });
+                        }
+                        
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
                         console.log('Error',error); // LOG dans Console Javascript
