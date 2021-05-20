@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.String.valueOf;
 import java.util.List;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,9 +31,9 @@ public class StatEmployeSerialisation extends Serialisation {
         JsonObject globalContainer = new JsonObject();
         
         List<Employe> employes = (List<Employe>) request.getAttribute("statEmploye");
-        
         for (int i=0; i<employes.size(); i++)
         {
+            
             JsonObject container = new JsonObject();
             container.addProperty("prenom", employes.get(i).getPrenom());
             container.addProperty("nom", employes.get(i).getNom());
