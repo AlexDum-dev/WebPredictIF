@@ -2,6 +2,7 @@ fr/insalyon/dasi/ihm/web/action/GetTop5Action.class
 fr/insalyon/dasi/ihm/web/action/DemanderConsultationAction.class
 fr/insalyon/dasi/ihm/web/serialisation/GetTop5Serialisation.class
 fr/insalyon/dasi/ihm/web/serialisation/DemanderConsultationSerialisation.class
+fr/insalyon/dasi/ihm/web/action/GetProfilClientAction.class
 fr/insalyon/dasi/ihm/web/action/InscriptionClientAction.class
 fr/insalyon/dasi/ihm/web/action/GetPredictionAction.class
 fr/insalyon/dasi/ihm/web/serialisation/StatEmployeSerialisation.class
@@ -15,6 +16,7 @@ fr/insalyon/dasi/ihm/web/serialisation/StatMediumSerialisation.class
 fr/insalyon/dasi/ihm/web/action/StatMediumAction.class
 fr/insalyon/dasi/ihm/web/ActionServlet.class
 fr/insalyon/dasi/ihm/web/serialisation/GetPredictionSerialisation.class
+fr/insalyon/dasi/ihm/web/serialisation/GetProfilClientSerialisation.class
 fr/insalyon/dasi/ihm/web/serialisation/GetProfilEmpSerialisation.class
 fr/insalyon/dasi/ihm/web/action/GetProfilEmpAction.class
 fr/insalyon/dasi/ihm/web/action/ConnecterUtilisateurAction.class
