@@ -38,9 +38,6 @@ public class DemanderConsultationAction extends Action{
         
         
         request.getSession(true).setAttribute("consultation", consultation);
-        request.setAttribute("employe", consultation.getEmploye());
-        request.setAttribute("client", client);
-        request.setAttribute("medium", service.getMedium(denomination));
-       
+        
     }
 }
