@@ -4,70 +4,121 @@
 
 <html lang="en">
 
-  <header>
-    <meta charset="UTF-8">
-    <title> Predict'IF</title>
-    <link rel="stylesheet" href="css/masterIndex.css">
-    <link rel="FaviconIcon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut" href="favicon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="name" content="Basma Belahcen's Portfolio">
-    <meta name="robot" content="noindex, nofollow">
-  </header> 
+    <header>
+        <meta charset="UTF-8">
+        <title> Predict'IF</title>
+        <link rel="stylesheet" href="css/masterIndex.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-  <body>
+    </header> 
 
-    <div class="topnav">
-      <a class="active" href="login.html">Connexion</a>
-    </div>
+    <body>
 
-    <!--<img src="images/background.jpg" width="100%" alt="banner">-->
-    
-    
-    <div style="background-image: url('images/background.jpg')">
-        <br>
-        <br>
-        <br>
-        <h1 class="accueil"> Prédict'IF</h1>
-        <h3 class="soustitre"> La réponse à toutes vos questions </h3>
-      <br>
-    </div>
-    <section class="pagelayout">
-      <div>
-        <img src="images/Spirite.jpg" width="100%">
-        <h2>Spirite</h2>
-        <p> I am a third year computer science student at Insa Lyon.</p>
-        <p> I am currently searching for an 8 to 12 weeks internship.</p>
-        <p> My ideal start date is june the 14th 2021.</p>
-      </div>
-       <div>
-        <img src="images/Cartomancien.jpg" width="100%">
-        <h2>Cartomancien</h2>
-        <p> I am a third year computer science student at Insa Lyon.</p>
-        <p> I am currently searching for an 8 to 12 weeks internship.</p>
-        <p> My ideal start date is june the 14th 2021.</p>
-      </div>
-       <div>
-        <img src="images/Astrologue.jpg" width="100%">
-        <h2>Astrologue</h2>
-        <p> I am a third year computer science student at Insa Lyon.</p>
-        <p> I am currently searching for an 8 to 12 weeks internship.</p>
-        <p> My ideal start date is june the 14th 2021.</p>
-      </div>
-        
-    </section>
-    <div class="connexion">
-      <a class="active" href="login.html">Consulter Maintenant!</a>
-    </div>
-    <h2>Nos Top Médium</h2>
-    
-    
-  </body>
+        <div class="topnav">
+            <a class="active" href="login.html">Connexion</a>
+        </div>
+
+        <!--<img src="images/background.jpg" width="100%" alt="banner">-->
 
 
-  <footer>
-    <hr>
-      <code> Copyright (c) 2021 Hugo LE BON, Hugo LE BON, Hugo LE BON, Hugo LE BON </code>
-  </footer>
+        <div style="background-image: url('images/background.jpg')">
+            <br>
+            <br>
+            <br>
+            <h1 class="accueil"> Prédict'IF</h1>
+            <h3 class="soustitre"> La réponse à toutes vos questions </h3>
+            <br>
+        </div>
+        <section class="pagelayout">
+            <div>
+                <img src="images/Spirite.jpg" width="100%">
+                <h2>Spirite</h2>
+                <p> Les talents d'un spirite te permettent de prendre contact
+                    avec les esprits d'une personne partie trop tot <br> <br>
+                    Alors n'hésite pas à choisir le spirite idéal 
+                    pour communiquer avec le monde des esprits</p>
+            </div>
+            <div>
+                <img src="images/Cartomancien.jpg" width="100%">
+                <h2>Cartomancien</h2>
+                <p> Tu as du mal à faire des choix dans la vie? <br> <br>
+                    Obtiens toutes les réponses aux questions
+                    sur ton éveil spirituel et découvre ce que te réserve
+                    l'avenir grace à nos cartomanciens.</p>
+                
+            </div>
+            <div>
+                <img src="images/Astrologue.jpg" width="100%">
+                <h2>Astrologue</h2>
+                <p> Si tu veux percevoir ton existence différemment, 
+                    l'astrologue est le medium qu'il te faut! <br> <br> 
+                    Grace au mouvement des astres, tu obtiendras
+                    des informations sur ta situation affective, professionnelle ou mentale. <br> <br>
+                    Alors consulte dès maintenant !
+                 
+                </p>
+            </div>
+
+        </section>
+        <div class="connexion">
+            <a class="active" href="login.html">Consulter Maintenant!</a>
+        </div>
+        <h2>Nos Top Médium</h2>
+        <div id="med1"></div> 
+        <div id="med2"/> </div> 
+        <div id="med3"></div> 
+        <div id="med4"></div> 
+        <div id="med5"></div> 
+
+
+    <script>
+        $(document).ready(function () {
+
+            // Appel AJAX
+            $.ajax({
+                url: './ActionServlet',
+                method: 'POST',
+                data: {
+                    todo: 'getTop5'
+                },
+                dataType: 'json'
+            })
+                    .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response', response); // LOG dans Console Javascript
+
+                        var elem1 = document.createElement('tr');
+                        $('#med1').html(response.numero0);
+                        $('#med2').html(response.numero1);
+                        $('#med3').html(response.numero2);
+                        $('#med4').html(response.numero3);
+                        $('#med5').html(response.numero4);
+
+
+                        $("#tabTop5").append(elem1);
+
+
+                        /*if (response.consultation) {
+                         alert("Vous avez une nouvelle demande de consultation");
+                         $('#ready').show();
+                         $('#ready').on('click', function (){
+                         window.location.replace("consultation.html");
+                         });
+                         }*/
+
+                    })
+                    .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error', error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always(function () { // Fonction toujours appelée
+                    });
+
+        });
+    </script>
+
+</body>
+
+
+
 
 </html>

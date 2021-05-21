@@ -106,7 +106,7 @@ public class ActionServlet extends HttpServlet {
                 action = new GetTop5Action();
                 serialisation = new GetTop5Serialisation();
             }
-            
+            break;
             
             case "profilEmp":{
                 action = new GetProfilEmpAction();
@@ -130,6 +130,7 @@ public class ActionServlet extends HttpServlet {
                 action = new StatMediumAction();
                 serialisation = new StatMediumSerialisation();
             }
+            break;
         }
         
         action.executer(request);

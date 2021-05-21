@@ -22,11 +22,8 @@ public class GetTop5Action extends Action{
         
         List<Medium> top = service.top5();
         
-        request.setAttribute("numero1", top.get(0));
-        request.setAttribute("numero2", top.get(1));
-        request.setAttribute("numero3", top.get(2));
-        request.setAttribute("numero4", top.get(3));
-        request.setAttribute("numero5", top.get(4));
+        request.setAttribute("listeTop5", top);
+        
     }
     
 }
