@@ -128,34 +128,41 @@
                                 var btn = document.createElement('button');
                                 btn.textContent = "RDV";
                                 btn.setAttribute("id", m);
-                                var deno = response[m].deonomination;
-                                
+                                var denomination = response[m].denomination;
+
                                 tdD.textContent = response[m].denomination;
                                 tdP.textContent = response[m].presentation;
                                 elemTr.append(tdD);
                                 elemTr.append(tdP);
                                 elemTr.append(btn);
                                 $("#tabMed").append(elemTr);
-                                
-                                $("#"+m).on('click', function (deno) {
+
+                                $("#" + m).on('click', function () {
+                                    alert("Demande de consultation en cours");
                                     $.ajax({
                                         url: './ActionServlet',
                                         method: 'POST',
                                         data: {
                                             todo: 'demanderConsult',
-                                            denomination: deno
+                                            denomination: denomination
                                         },
                                         dataType: 'json'
+                                    }).done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                        console.log('Response', response); // LOG dans Console Javascript
+                                        if(response.status){
+                                            alert("Votre demande de consultation a bien été traitée. Le médium va vous contacter sous peu.");
+                                        } else {
+                                            alert("Le médium que vous avez demandé est indisponible. Veuillez rééssayer plus tard.");
+                                        }
+
                                     })
                                             .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
                                                 console.log('Error', error); // LOG dans Console Javascript
                                                 alert("Erreur lors de l'appel AJAX");
                                             })
-                                            .always(function () { // Fonction toujours appelée             
+                                            .always(function () { // Fonction toujours appelée
                                             });
                                 });
-
-                                
                             }
 
                         })

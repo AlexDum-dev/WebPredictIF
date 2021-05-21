@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <title> Bienvenue </title>
     <link rel="stylesheet" href="css/masterIndex.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   </header> 
 
   <body>
@@ -31,18 +32,24 @@
     
     <div>
         
-        <h2> Client : <br>
-            Vous êtes :
-        </h2>
+        <h2> Client :</h2> <div id='presentationClient'></div><br>
+        <h2> Vous êtes :</h2> <div id='presentationEmpl'></div><br>
+        <h2> Vous incarnez :</h2> <div id='mediumIncarne'></div><br>
+        
     </div>
     
     <section class="grid">
       <div>
         <h3>Historique</h3>
+        <div id='historique'>
       </div>
         
        <div>
         <h3>Profil Astral</h3>
+        <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
+        <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
+        <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
+        <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
        </div>  
     </section>
    
@@ -63,10 +70,65 @@
 
 
         <h5> Prédictions </h5> 
-            Amour : <br>
-            Santé : <br>
-            Travail : <br>
+        <h6> Amour :</h6><div id='amour'></div> <br>
+        <h6> Santé :</h6><div id='sante'></div> <br>
+        <h6> Travail :</h6><div id='travail'></div> <br>
     </div>
+    
+    <script> 
+    $(document).ready(function () {
+                // Appel AJAX
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'consultation'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log('Response', response); // LOG dans Console Javascript
+                            $('#presentationClient').html(response.client);
+                            $('#signeZodiapresentationClientque').html(response.signeZodiaque);
+                            $('#signeAstroChinois').html(response.signeAstroChinois);
+                            $('#couleurPorteBonheur').html(response.couleurPorteBonheur);
+                            $('#animalTotem').html(response.animalTotem);
+                            $('#mediumIncarne').html(response.medium);
+                            $('#presentationEmpl').html(response.employe);
+                            $('#historique').html(response.historique);
+
+                        })
+                        .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                            console.log('Error', error); // LOG dans Console Javascript
+                            alert("Erreur lors de l'appel AJAX");
+                        })
+                        .always(function () { // Fonction toujours appelée             
+                        });
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'getPrediction'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log('Response', response); // LOG dans Console Javascript
+                            $('#mour').html(response.Amour);
+                            $('#sante').html(response.Sante);
+                            $('#travail').html(response.Travail);
+
+                        })
+                        .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                            console.log('Error', error); // LOG dans Console Javascript
+                            alert("Erreur lors de l'appel AJAX");
+                        })
+                        .always(function () { // Fonction toujours appelée             
+                        });
+
+            });
+        </script>
     
   </body>
 
