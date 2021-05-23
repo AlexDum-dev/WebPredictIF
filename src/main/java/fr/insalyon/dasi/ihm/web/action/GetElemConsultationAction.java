@@ -5,6 +5,9 @@
  */
 package fr.insalyon.dasi.ihm.web.action;
 
+import fr.insalyon.dasi.PredictIF.predictif.metier.Service;
+import fr.insalyon.dasi.PredictIF.predictif.metier.modele.Consultation;
+import fr.insalyon.dasi.PredictIF.predictif.metier.modele.Employe;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -15,6 +18,12 @@ public class GetElemConsultationAction extends Action {
 
     @Override
     public void executer(HttpServletRequest request) {
+        Service service = new Service();
+        Employe employeActuel = (Employe) request.getSession(true).getAttribute("user");
+        Consultation consultation = (Consultation) request.getSession(true).getAttribute("consultation");
+        
+        request.setAttribute("consultation", consultation);
     }
+    
     
 }

@@ -44,6 +44,7 @@ public class StatMediumSerialisation extends Serialisation {
             //String s = "medium"+valueOf(i);
             //globalContainer.add(s, container);
         }
+       
         PrintWriter out = this.getWriter(response);
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         gson.toJson(jobj, out);

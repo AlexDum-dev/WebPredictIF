@@ -4,98 +4,122 @@
 
 <html lang="en">
 
-  <header>
-    <meta charset="UTF-8">
-    <title> Bienvenue </title>
-    <link rel="stylesheet" href="css/masterIndex.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  </header> 
+    <header>
+        <meta charset="UTF-8">
+        <title> Bienvenue </title>
+        <link rel="stylesheet" href="css/masterIndex.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </header> 
 
-  <body>
-  <div style="background-image: url('images/background2.jpg')" "background-repeat: no-repeat"/>
+    <body>
+        <div style="background-image: url('images/background2.jpg')" "background-repeat: no-repeat"/>
 
-    <div class="deconnexion">
-      <a class="active" href="index.html">Déconnexion</a>
-    </div>
+        <div class="deconnexion">
+            <a class="active" href="index.html">Déconnexion</a>
+        </div>
 
-    <!--<img src="images/background.jpg" width="100%" alt="banner">-->
-    
-    
-    <div style="background-image: url('images/background1.jpg')" "background-repeat: no-repeat">
+        <!--<img src="images/background.jpg" width="100%" alt="banner">-->
+
+
+        <div style="background-image: url('images/background1.jpg')" "background-repeat: no-repeat">
+            <br>
+            <br>
+            <br>
+            <h1> Bienvenue </h1>
+
+            <br>
+        </div>
+
+        <div>
+
+            <h2> Client :</h2> <div id='presentationClient'></div><br>
+            <h2> Vous êtes :</h2> <div id='presentationEmpl'></div><br>
+            <h2> Vous incarnez :</h2> <div id='mediumIncarne'></div><br>
+
+        </div>
+
+        <section class="grid">
+            <div>
+                <h3>Historique</h3>
+                <div id='historique'>
+                    <table id="tabHistorique" border="3" width="100%" align="center">
+                        <tr>
+                            <th id="employe"> Employe </th>
+                            <th id="medium">Médium</th>
+                            <th id="commentaire">Commentaire</th>
+                            <th id="date">Date</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <h3>Profil Astral</h3>
+                    <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
+                    <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
+                    <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
+                    <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
+                </div>  
+        </section>
+
+        <button class="bouton-consultation" id="finirConsultation"> Finir la consultation </button>
         <br>
         <br>
-        <br>
-        <h1> Bienvenue </h1>
 
-      <br>
-    </div>
-    
-    <div>
-        
-        <h2> Client :</h2> <div id='presentationClient'></div><br>
-        <h2> Vous êtes :</h2> <div id='presentationEmpl'></div><br>
-        <h2> Vous incarnez :</h2> <div id='mediumIncarne'></div><br>
-        
-    </div>
-    
-    <section class="grid">
-      <div>
-        <h3>Historique</h3>
-        <div id='historique'>
-      </div>
-        
-       <div>
-        <h3>Profil Astral</h3>
-        <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
-        <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
-        <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
-        <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
-       </div>  
-    </section>
-   
-    <button class="bouton-consultation">Je suis pret </button>
-    <br>
-    <br>
-    <button class="bouton-aide">Besoin d'aide?</button>
-    
-    <div>
-        <h4>
+        <div>
+            <h4>
                 <br> Notes: <br>
-        </h4>     
+            </h4>     
             Amour : <input type="text" id="champ-amour" size="5" /> <br/>
-            Santé : <input type="text" id="champ-santé" size="5"  /> <br/>
+            Santé : <input type="text" id="champ-sante" size="5"  /> <br/>
             Travail : <input type="text" id="champ-travail" size="5"  /> <br/>
             <br/>
             <button id="bouton-confirmer">Confirmer</button>
 
 
-        <h5> Prédictions </h5> 
-        <h6> Amour :</h6><div id='amour'></div> <br>
-        <h6> Santé :</h6><div id='sante'></div> <br>
-        <h6> Travail :</h6><div id='travail'></div> <br>
-    </div>
-    
-    <script> 
-    $(document).ready(function () {
+            <h5> Prédictions </h5> 
+            <h6> Amour :</h6><div id='amour'></div> <br>
+            <h6> Santé :</h6><div id='sante'></div> <br>
+            <h6> Travail :</h6><div id='travail'></div> <br>
+        </div>
+
+        <script>
+            $(document).ready(function () {
                 // Appel AJAX
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',
                     data: {
-                        todo: 'consultation'
+                        todo: 'getElemConsultation'
                     },
                     dataType: 'json'
                 })
                         .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
                             console.log('Response', response); // LOG dans Console Javascript
-                            $('#presentationClient').html(response.client);
-                            $('#signeZodiapresentationClientque').html(response.signeZodiaque);
-                            $('#signeAstroChinois').html(response.signeAstroChinois);
-                            $('#couleurPorteBonheur').html(response.couleurPorteBonheur);
-                            $('#animalTotem').html(response.animalTotem);
-                            $('#mediumIncarne').html(response.medium);
-                            $('#presentationEmpl').html(response.employe);
-                            $('#historique').html(response.historique);
+                            $("#presentationClient").html(response.client)
+                            $("#presentationEmpl").html(response.employe)
+                            $("#mediumIncarne").html(response.medium)
+                            $("#signeZodiaque").html(response.signeZodiaque)
+                            $("#signeAstroChinois").html(response.signeAstroChinois)
+                            $("#couleurPorteBonheur").html(response.couleurPorteBonheur)
+                            $("#animalTotem").html(response.animalTotem)
+
+                            for (var i = 0; i < response.historique.length; i++)
+                            {
+                                var elemTr = document.createElement('tr');
+                                var tdE = document.createElement('td');
+                                var tdM = document.createElement('td');
+                                var tdC = document.createElement('td');
+                                var tdD = document.createElement('td');
+                                
+                                tdE.textContent = response.historique[i].employe;
+                                tdM.textContent = response.historique[i].medium;
+                                tdC.textContent = response.historique[i].commentaire;
+                                tdD.textContent = response.historique[i].date;
+                                
+                                elemTr.append(tdE); elemTr.append(tdM); elemTr.append(tdC); elemTr.append(tdD);
+                                
+                                $("#tabHistorique").append(elemTr);
+                            }
 
                         })
                         .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
@@ -104,32 +128,67 @@
                         })
                         .always(function () { // Fonction toujours appelée             
                         });
+                
+                //appel ajax pour lancer les prédictions : 
+                $('#bouton-confirmer').on('click', function () { // Fonction appelée lors du clic sur le bouton
 
-                $.ajax({
-                    url: './ActionServlet',
-                    method: 'POST',
-                    data: {
-                        todo: 'getPrediction'
-                    },
-                    dataType: 'json'
-                })
-                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                            console.log('Response', response); // LOG dans Console Javascript
-                            $('#mour').html(response.Amour);
-                            $('#sante').html(response.Sante);
-                            $('#travail').html(response.Travail);
+                    var amour = $('#champ-amour').val();
+                    var sante = $('#champ-sante').val();
+                    var travail = $('#champ-travail').val();
 
-                        })
-                        .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
-                            console.log('Error', error); // LOG dans Console Javascript
-                            alert("Erreur lors de l'appel AJAX");
-                        })
-                        .always(function () { // Fonction toujours appelée             
-                        });
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'getPrediction',
+                            noteAmour: amour,
+                            noteSante: sante,
+                            noteTravail: travail
+                        },
+                        dataType: 'json'
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                console.log('Response', response); // LOG dans Console Javascript
+                                $('#amour').html(response.Amour);
+                                $('#sante').html(response.Sante);
+                                $('#travail').html(response.Travail);
 
+                            })
+                            .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                                console.log('Error', error); // LOG dans Console Javascript
+                                alert("Erreur lors de l'appel AJAX");
+                            })
+                            .always(function () { // Fonction toujours appelée             
+                            });
+                });
+                
+                //appel ajax pour finir la consultation  :
+                $('#finirConsultation').on('click', function () { // Fonction appelée lors du clic sur le bouton
+                    var com = prompt("Veuillez entrer un commentaire à propos de la consultation : ");
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data:{
+                            todo: 'finirConsultation',
+                            commentaire: com
+                        },
+                        dataType:'json'
+                    })
+                    .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                console.log('Response', response); // LOG dans Console Javascript
+                                window.location.replace("employe.html");
+                            })
+                            .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                                console.log('Error', error); // LOG dans Console Javascript
+                                alert("Erreur lors de l'appel AJAX");
+                            })
+                            .always(function () { // Fonction toujours appelée             
+                            });
+                });
             });
         </script>
-    
-  </body>
+
+    </body>
 
 </html>

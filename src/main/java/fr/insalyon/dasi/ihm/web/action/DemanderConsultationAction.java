@@ -33,6 +33,7 @@ public class DemanderConsultationAction extends Action{
         }
         else
         {
+            System.out.println("consultation null");
             request.setAttribute("status", false);
         }
         

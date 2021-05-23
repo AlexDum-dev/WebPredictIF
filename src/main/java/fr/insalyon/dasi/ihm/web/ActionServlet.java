@@ -15,6 +15,7 @@ import fr.insalyon.dasi.ihm.web.action.Action;
 import fr.insalyon.dasi.ihm.web.action.ConnecterUtilisateurAction;
 import fr.insalyon.dasi.ihm.web.action.DemanderConsultationAction;
 import fr.insalyon.dasi.ihm.web.action.FinirConsultationEmployeAction;
+import fr.insalyon.dasi.ihm.web.action.GetElemConsultationAction;
 import fr.insalyon.dasi.ihm.web.action.GetPredictionAction;
 import fr.insalyon.dasi.ihm.web.action.GetProfilClientAction;
 import fr.insalyon.dasi.ihm.web.action.GetProfilEmpAction;
@@ -25,6 +26,7 @@ import fr.insalyon.dasi.ihm.web.action.StatMediumAction;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnecterUtilisateurSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.DemanderConsultationSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.FinirConsultationEmployeSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.GetElemConsultationSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.GetPredictionSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.GetProfilClientSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.GetProfilEmpSerialisation;
@@ -131,6 +133,11 @@ public class ActionServlet extends HttpServlet {
                 serialisation = new StatMediumSerialisation();
             }
             break;
+            
+            case "getElemConsultation":{
+                action = new GetElemConsultationAction();
+                serialisation = new GetElemConsultationSerialisation();
+            }
         }
         
         action.executer(request);
