@@ -74,9 +74,30 @@
                         <br> Notes: <br>
                     </h4>
                     <div class="notes">
-                            <p class="text"> Amour :</p><input type="text" id="champ-amour" size="5" /> <br/>
-                            <p class="text"> Santé : </p><input type="text" id="champ-sante" size="5"  /> <br/>
-                            <p class="text">Travail : </p><input type="text" id="champ-travail" size="5"  /> <br/>
+                            <p class="text"> Amour :</p><label for="liste_defilante"></label>
+                            <select name="listeAmour" id="listeAmour">
+                                <option value="">--Veuillez choisir une option--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>                                
+                            </select>
+                            <p class="text"> Santé : </p><label for="liste_defilante"></label>
+                            <select name="listeSante" id="listeSante">
+                                <option value="">--Veuillez choisir une option--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>                                
+                            </select><br/>
+                            <p class="text">Travail : </p><label for="liste_defilante"></label>
+                            <select name="listeTravail" id="listeTravail">
+                                <option value="">--Veuillez choisir une option--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>                                
+                            </select><br/>
                             <br/>
                     </div>
                     <button id="bouton-confirmer">Confirmer</button>
@@ -142,35 +163,42 @@
                 //appel ajax pour lancer les prédictions : 
                 $('#bouton-confirmer').on('click', function () { // Fonction appelée lors du clic sur le bouton
 
-                    var amour = $('#champ-amour').val();
-                    var sante = $('#champ-sante').val();
-                    var travail = $('#champ-travail').val();
 
-                    // Appel AJAX
-                    $.ajax({
-                        url: './ActionServlet',
-                        method: 'POST',
-                        data: {
-                            todo: 'getPrediction',
-                            noteAmour: amour,
-                            noteSante: sante,
-                            noteTravail: travail
-                        },
-                        dataType: 'json'
-                    })
-                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                                console.log('Response', response); // LOG dans Console Javascript
-                                $('#amour').html(response.Amour);
-                                $('#sante').html(response.Sante);
-                                $('#travail').html(response.Travail);
+                    var amour = $( '#listeAmour' ).val();
+                    var sante = $('#listeSante').val();
+                    var travail = $('#listeTravail').val();
 
-                            })
-                            .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
-                                console.log('Error', error); // LOG dans Console Javascript
-                                alert("Erreur lors de l'appel AJAX");
-                            })
-                            .always(function () { // Fonction toujours appelée             
-                            });
+                    if (amour !== "" && sante !== "" && travail !== "")
+                    {
+
+                        // Appel AJAX
+                        $.ajax({
+                            url: './ActionServlet',
+                            method: 'POST',
+                            data: {
+                                todo: 'getPrediction',
+                                noteAmour: amour,
+                                noteSante: sante,
+                                noteTravail: travail
+                            },
+                            dataType: 'json'
+                        })
+                                .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                    console.log('Response', response); // LOG dans Console Javascript
+                                    $('#amour').html(response.Amour);
+                                    $('#sante').html(response.Sante);
+                                    $('#travail').html(response.Travail);
+
+                                })
+                                .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                                    console.log('Error', error); // LOG dans Console Javascript
+                                    alert("Erreur lors de l'appel AJAX");
+                                })
+                                .always(function () { // Fonction toujours appelée             
+                                });
+                    } else {
+                            alert("Veuillez remplir tous les champs");
+                    }
                 });
                 
                 //appel ajax pour finir la consultation  :
@@ -200,5 +228,10 @@
         </script>
 
     </body>
+    
+    <footer>
+    <hr>
+      <code> Copyright (c) 2021 Groupe de Binomes B3405-B3406  </code>
+    </footer>
 
 </html>
