@@ -29,18 +29,17 @@
 
             <br>
         </div>
+        <section class="consultation">
+        
 
-        <div>
+            <div> <h2> Client :</h2> <p id='presentationClient'></p><br></div>
+            <div><h2> Vous êtes :</h2> <p id='presentationEmpl'></p><br></div>
+            <div><h2> Vous incarnez :</h2> <p id='mediumIncarne'></p><br></div>
 
-            <h2> Client :</h2> <div id='presentationClient'></div><br>
-            <h2> Vous êtes :</h2> <div id='presentationEmpl'></div><br>
-            <h2> Vous incarnez :</h2> <div id='mediumIncarne'></div><br>
+        </section>
 
-        </div>
-
-        <section class="grid">
             <div>
-                <h3>Historique</h3>
+                <h2 class="historiqueh2">Historique:</h2>
                 <div id='historique'>
                     <table id="tabHistorique" border="3" width="100%" align="center">
                         <tr>
@@ -52,34 +51,45 @@
                     </table>
                 </div>
 
-                <div>
-                    <h3>Profil Astral</h3>
-                    <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
-                    <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
-                    <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
-                    <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
-                </div>  
-        </section>
+                <h2 class="titreProfilAstral"> Profil Astral : </h2>
+        <section class="profilAstral">
+            <div>
+                <h3> Signe Zodiaque             : </h3> <p class="spec" id="signeZodiaque"></p> </h3>
+                <h3> Signe Astrologique chinois : </h3> <p class="spec" id="signeAstroChinois"></p>
+            </div>
+            <div>
+                <h3> Couleur Porte Bonheur      : </h3> <p class="spec" id="couleurPorteBonheur"></p>
+                <h3> Animal Totem               : </h3> <p class="spec" id="animalTotem"></p>
+            </div>
+        </section>  
 
         <button class="bouton-consultation" id="finirConsultation"> Finir la consultation </button>
         <br>
         <br>
 
         <div>
-            <h4>
-                <br> Notes: <br>
-            </h4>     
-            Amour : <input type="text" id="champ-amour" size="5" /> <br/>
-            Santé : <input type="text" id="champ-sante" size="5"  /> <br/>
-            Travail : <input type="text" id="champ-travail" size="5"  /> <br/>
-            <br/>
-            <button id="bouton-confirmer">Confirmer</button>
+            
+                <div>
+                    <h4>
+                        <br> Notes: <br>
+                    </h4>
+                    <div class="notes">
+                            <p class="text"> Amour :</p><input type="text" id="champ-amour" size="5" /> <br/>
+                            <p class="text"> Santé : </p><input type="text" id="champ-sante" size="5"  /> <br/>
+                            <p class="text">Travail : </p><input type="text" id="champ-travail" size="5"  /> <br/>
+                            <br/>
+                    </div>
+                    <button id="bouton-confirmer">Confirmer</button>
+                </div>
+            
 
 
             <h5> Prédictions </h5> 
-            <h6> Amour :</h6><div id='amour'></div> <br>
-            <h6> Santé :</h6><div id='sante'></div> <br>
-            <h6> Travail :</h6><div id='travail'></div> <br>
+            <p class="text"> Amour :</p><div id='amour'></div> <br>
+            <p class="text"> Santé :</p><div id='sante'></div> <br>
+            <p class="text"> Travail :</p><div id='travail'></div> <br>
+            
+            
         </div>
 
         <script>
