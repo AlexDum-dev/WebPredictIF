@@ -54,22 +54,9 @@
             <label for="motdepasse">Mot de passe : <br> </label>
             <input type="password" id="motdepasse" name="motdepasse" placeholder="">
 
-            <br>
-            
-            <label for="confmotdepasse">Confirmez Mot de passe : <br> </label>
-            <input type="password" id="confmotdepasse" name="Confmotdepasse" oninput="check(this")>
 
             <br>
-            <script language='javascript' type='text/javascript'>
-                function check(input) {
-                    if (input.value != document.getElementById('motdepasse').value) {
-                        input.setCustomValidity('les deux mots de passes doivent être identiques');
-                    } else {
-                        // input is valid -- reset the error message
-                        input.setCustomValidity('');
-                    }
-                }
-            </script>
+
             <br>
              <div class="connexion">
                 <input type="submit" id="submit" name="submit" value="Submit">
@@ -77,17 +64,6 @@
 
           </div>
 
-          <!--<script language="JavaScript">
-            var frmvalidator  = new Validator("myemailform");
-            frmvalidator.addValidation("confmotdepasse","req","Veuillez rentrer votre Mot de passe"); 
-            frmvalidator.addValidation("motdepasse","req","Veuillez entrer votre Mot de passe"); 
-            frmvalidator.addValidation("email","req","Veuillez entrer votre adresse Mail"); 
-            frmvalidator.addValidation("nom","req","Veuillez entrer votre nom"); 
-            frmvalidator.addValidation("prenom","req","Veuillez entrer votre prénom"); 
-            frmvalidator.addValidation("num","req","Veuillez entrer votre numéro de télephone"); 
-            frmvalidator.addValidation("email","email","Veuillez entrer une adresse Mail valide"); 
-          </script> -->
-          
     </div>
     
     
@@ -95,8 +71,7 @@
             $(document).ready( function () {
                 $('#submit').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
                     console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
-                    $('#notification').html("Connexion..."); // Message pour le paragraphe de notification
-
+                    
                     // Récupération de la valeur des champs du formulaire
                     var champPrenom = $('#prenom').val();
                     var champNom = $('#nom').val();
@@ -104,7 +79,6 @@
                     var champLogin = $('#email').val();
                     var champNum = $('#num').val();
                     var champPassword = $('#motdepasse').val();
-                    var champConf = $('#confmotdepasse').val();
                     var champAdresse = $('#adresse').val();
                     
 
@@ -130,7 +104,7 @@
                             window.location.replace("client.html");
                         }
                         else {
-                            $('#notification').html("Erreur lors de l'inscription"); // Message pour le paragraphe de notification
+                            alert("Erreur lors de l'inscription. Essayez de vous connecter");
                         }
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
@@ -138,7 +112,7 @@
                         alert("Erreur lors de l'appel AJAX");
                     })
                     .always( function () { // Fonction toujours appelée
-                        alert("AA");
+                        
                     });
                 });
             });
