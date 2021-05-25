@@ -4,74 +4,74 @@
 
 <html lang="en">
 
-  <header>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="css/masterIndex.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  </header>
+    <header>
+        <meta charset="UTF-8">
+        <title>Connexion</title>
+        <link rel="stylesheet" href="css/masterIndex.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </header>
 
-  <body>
-    <div class="topnav">
-      <a class="active" href="index.html">Accueil</a>
-    </div>
+    <body>
+        <div class="topnav">
+            <a class="active" href="index.html">Accueil</a>
+        </div>
 
-    <h1 class="co">Prédict'IF</h1>
-    <h3 class="con"> Inscription</h3>
-    <div class="container">
-          <div>
-              
-            <label for="prenom">Prénom :<br></label>
-            <input type="text" id="prenom" name="Prenom" placeholder="Entrez votre Prénom">
-            
-            <br>
-            
-            <label for="nom">Nom :<br></label>
-            <input type="text" id="nom" name="Nom" placeholder="Entrez votre Nom">
-            
-            <br>
-            
-            <label for="date">Date de Naissance :<br></label>
-            <input type="date" id="date" name="date" placeholder="Entrez votre Date de Naissance">
-            
-            <br>
+        <h1 class="co">Prédict'IF</h1>
+        <h3 class="con"> Inscription</h3>
+        <div class="container">
+            <div>
 
-            <label for="email">Email Address :<br></label>
-            <input type="text" id="email" name="Email" placeholder="Entrez votre Email">
+                <label for="prenom">Prénom :<br></label>
+                <input type="text" id="prenom" name="Prenom" placeholder="Entrez votre Prénom">
 
-            <br>
-            
-            <label for="num">Adresse<br></label>
-            <input type="text" id="adresse" name="adresse" placeholder="Entrez votre adresse">
-            
-             <br>
-             
-            <label for="num">Numéro de Télephone :<br></label>
-            <input type="text" id="num" name="Num" placeholder="Entrez votre Numéro de télephone">
+                <br>
 
-            <br>
+                <label for="nom">Nom :<br></label>
+                <input type="text" id="nom" name="Nom" placeholder="Entrez votre Nom">
 
-            <label for="motdepasse">Mot de passe : <br> </label>
-            <input type="password" id="motdepasse" name="motdepasse" placeholder="">
+                <br>
+
+                <label for="date">Date de Naissance :<br></label>
+                <input type="date" id="date" name="date" placeholder="Entrez votre Date de Naissance">
+
+                <br>
+
+                <label for="email">Email Address :<br></label>
+                <input type="text" id="email" name="Email" placeholder="Entrez votre Email">
+
+                <br>
+
+                <label for="num">Adresse<br></label>
+                <input type="text" id="adresse" name="adresse" placeholder="Entrez votre adresse">
+
+                <br>
+
+                <label for="num">Numéro de Télephone :<br></label>
+                <input type="text" id="num" name="Num" placeholder="Entrez votre Numéro de télephone">
+
+                <br>
+
+                <label for="motdepasse">Mot de passe : <br> </label>
+                <input type="password" id="motdepasse" name="motdepasse" placeholder="" required>
 
 
-            <br>
+                <br>
 
-            <br>
-             <div class="connexion">
-                <input type="submit" id="submit" name="submit" value="Submit">
+                <br>
+                <div class="connexion">
+                    <input type="submit" id="submit" name="submit" value="Submit">
+                </div>
+
             </div>
 
-          </div>
+        </div>
 
-    </div>
-    
-    
-    <script>
-            $(document).ready( function () {
-                $('#submit').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+        <script>
+            $(document).ready(function () {
+                $('#submit').on('click', function () { // Fonction appelée lors du clic sur le bouton
                     console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
-                    
+
                     // Récupération de la valeur des champs du formulaire
                     var champPrenom = $('#prenom').val();
                     var champNom = $('#nom').val();
@@ -80,42 +80,47 @@
                     var champNum = $('#num').val();
                     var champPassword = $('#motdepasse').val();
                     var champAdresse = $('#adresse').val();
-                    
 
-                    // Appel AJAX
-                    $.ajax({
-                        url: './ActionServlet',
-                        method: 'POST',
-                        data: {
-                            todo: 'inscription',
-                            prenom: champPrenom,
-                            nom: champNom,
-                            dateNaissance: champDate,
-                            mail: champLogin,
-                            numeroTel: champNum,
-                            password: champPassword, 
-                            adresse: champAdresse
-                        },
-                        dataType: 'json'
-                    })
-                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                        console.log('Response',response); // LOG dans Console Javascript
-                        if (response.status) {
-                            window.location.replace("client.html");
-                        }
-                        else {
-                            alert("Erreur lors de l'inscription. Essayez de vous connecter");
-                        }
-                    })
-                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
-                        console.log('Error',error); // LOG dans Console Javascript
-                        alert("Erreur lors de l'appel AJAX");
-                    })
-                    .always( function () { // Fonction toujours appelée
-                        
-                    });
+                    if (champPrenom !== "" && champNom !== "" && champDate !== "" && champLogin !== "" && champNum !== "" && champPassword !== "" && champAdresse !== "")
+                    {
+                        // Appel AJAX
+                        $.ajax({
+                            url: './ActionServlet',
+                            method: 'POST',
+                            data: {
+                                todo: 'inscription',
+                                prenom: champPrenom,
+                                nom: champNom,
+                                dateNaissance: champDate,
+                                mail: champLogin,
+                                numeroTel: champNum,
+                                password: champPassword,
+                                adresse: champAdresse
+                            },
+                            dataType: 'json'
+                        })
+                                .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                    console.log('Response', response); // LOG dans Console Javascript
+                                    if (response.status) {
+                                        window.location.replace("client.html");
+                                    } else {
+                                        alert("Erreur lors de l'inscription. Essayez de vous connecter");
+                                    }
+                                })
+                                .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                                    console.log('Error', error); // LOG dans Console Javascript
+                                    alert("Erreur lors de l'appel AJAX");
+                                })
+                                .always(function () { // Fonction toujours appelée
+
+                                });
+                    } else {
+                        alert("Veuillez remplir tous les champs");
+                    }
+
+
                 });
             });
-    </script>
-  </body>
+        </script>
+    </body>
 </html>
