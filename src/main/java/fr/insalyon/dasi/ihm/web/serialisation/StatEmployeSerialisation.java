@@ -7,6 +7,7 @@ package fr.insalyon.dasi.ihm.web.serialisation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import fr.insalyon.dasi.PredictIF.predictif.metier.modele.Employe;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
@@ -28,7 +29,7 @@ public class StatEmployeSerialisation extends Serialisation {
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        JsonObject globalContainer = new JsonObject();
+        JsonArray jsob = new JsonArray();    
         
         List<Employe> employes = (List<Employe>) request.getAttribute("statEmploye");
         for (int i=0; i<employes.size(); i++)
@@ -38,13 +39,14 @@ public class StatEmployeSerialisation extends Serialisation {
             container.addProperty("prenom", employes.get(i).getPrenom());
             container.addProperty("nom", employes.get(i).getNom());
             container.addProperty("nbConsultation", employes.get(i).getNbConsultation());
-            String s = "employe"+valueOf(i);
-            globalContainer.add(s, container);
+            jsob.add(container);
+            //String s = "employe"+valueOf(i);
+            //globalContainer.add(s, container);
         }
         
         PrintWriter out = this.getWriter(response);
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-        gson.toJson(globalContainer, out);
+        gson.toJson(jsob, out);
         out.close();
     }
     
