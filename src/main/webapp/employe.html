@@ -58,7 +58,7 @@
                         $('#prenomEmp').html(response.prenom+" "+response.nom);
                         
                         if (response.consultation) {
-                            alert("Vous avez une nouvelle demande de consultation");
+                            //alert("Vous avez une nouvelle demande de consultation");
                             $('#ready').show();
                             $('#ready').on('click', function (){
                                 window.location.replace("consultation.html");
