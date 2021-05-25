@@ -29,18 +29,17 @@
 
             <br>
         </div>
+        <section class="consultation">
+        
 
-        <div>
+            <div> <h2> Client :</h2> <p id='presentationClient'></p><br></div>
+            <div><h2> Vous êtes :</h2> <p id='presentationEmpl'></p><br></div>
+            <div><h2> Vous incarnez :</h2> <p id='mediumIncarne'></p><br></div>
 
-            <h2> Client :</h2> <div id='presentationClient'></div><br>
-            <h2> Vous êtes :</h2> <div id='presentationEmpl'></div><br>
-            <h2> Vous incarnez :</h2> <div id='mediumIncarne'></div><br>
+        </section>
 
-        </div>
-
-        <section class="grid">
             <div>
-                <h3>Historique</h3>
+                <h2 class="historiqueh2">Historique:</h2>
                 <div id='historique'>
                     <table id="tabHistorique" border="3" width="100%" align="center">
                         <tr>
@@ -52,34 +51,66 @@
                     </table>
                 </div>
 
-                <div>
-                    <h3>Profil Astral</h3>
-                    <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
-                    <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
-                    <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
-                    <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
-                </div>  
-        </section>
+                <h2 class="titreProfilAstral"> Profil Astral : </h2>
+        <section class="profilAstral">
+            <div>
+                <h3> Signe Zodiaque             : </h3> <p class="spec" id="signeZodiaque"></p> </h3>
+                <h3> Signe Astrologique chinois : </h3> <p class="spec" id="signeAstroChinois"></p>
+            </div>
+            <div>
+                <h3> Couleur Porte Bonheur      : </h3> <p class="spec" id="couleurPorteBonheur"></p>
+                <h3> Animal Totem               : </h3> <p class="spec" id="animalTotem"></p>
+            </div>
+        </section>  
 
         <button class="bouton-consultation" id="finirConsultation"> Finir la consultation </button>
         <br>
         <br>
 
         <div>
-            <h4>
-                <br> Notes: <br>
-            </h4>     
-            Amour : <input type="text" id="champ-amour" size="5" /> <br/>
-            Santé : <input type="text" id="champ-sante" size="5"  /> <br/>
-            Travail : <input type="text" id="champ-travail" size="5"  /> <br/>
-            <br/>
-            <button id="bouton-confirmer">Confirmer</button>
+            
+                <div>
+                    <h4>
+                        <br> Notes: <br>
+                    </h4>
+                    <div class="notes">
+                            <p class="text"> Amour :</p><label for="liste_defilante"></label>
+                            <select name="listeAmour" id="listeAmour">
+                                <option value="">--Veuillez choisir une option--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>                                
+                            </select>
+                            <p class="text"> Santé : </p><label for="liste_defilante"></label>
+                            <select name="listeSante" id="listeSante">
+                                <option value="">--Veuillez choisir une option--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>                                
+                            </select><br/>
+                            <p class="text">Travail : </p><label for="liste_defilante"></label>
+                            <select name="listeTravail" id="listeTravail">
+                                <option value="">--Veuillez choisir une option--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>                                
+                            </select><br/>
+                            <br/>
+                    </div>
+                    <button id="bouton-confirmer">Confirmer</button>
+                </div>
+            
 
 
             <h5> Prédictions </h5> 
-            <h6> Amour :</h6><div id='amour'></div> <br>
-            <h6> Santé :</h6><div id='sante'></div> <br>
-            <h6> Travail :</h6><div id='travail'></div> <br>
+            <p class="text"> Amour :</p><div id='amour'></div> <br>
+            <p class="text"> Santé :</p><div id='sante'></div> <br>
+            <p class="text"> Travail :</p><div id='travail'></div> <br>
+            
+            
         </div>
 
         <script>
@@ -132,35 +163,42 @@
                 //appel ajax pour lancer les prédictions : 
                 $('#bouton-confirmer').on('click', function () { // Fonction appelée lors du clic sur le bouton
 
-                    var amour = $('#champ-amour').val();
-                    var sante = $('#champ-sante').val();
-                    var travail = $('#champ-travail').val();
 
-                    // Appel AJAX
-                    $.ajax({
-                        url: './ActionServlet',
-                        method: 'POST',
-                        data: {
-                            todo: 'getPrediction',
-                            noteAmour: amour,
-                            noteSante: sante,
-                            noteTravail: travail
-                        },
-                        dataType: 'json'
-                    })
-                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                                console.log('Response', response); // LOG dans Console Javascript
-                                $('#amour').html(response.Amour);
-                                $('#sante').html(response.Sante);
-                                $('#travail').html(response.Travail);
+                    var amour = $( '#listeAmour' ).val();
+                    var sante = $('#listeSante').val();
+                    var travail = $('#listeTravail').val();
 
-                            })
-                            .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
-                                console.log('Error', error); // LOG dans Console Javascript
-                                alert("Erreur lors de l'appel AJAX");
-                            })
-                            .always(function () { // Fonction toujours appelée             
-                            });
+                    if (amour !== "" && sante !== "" && travail !== "")
+                    {
+
+                        // Appel AJAX
+                        $.ajax({
+                            url: './ActionServlet',
+                            method: 'POST',
+                            data: {
+                                todo: 'getPrediction',
+                                noteAmour: amour,
+                                noteSante: sante,
+                                noteTravail: travail
+                            },
+                            dataType: 'json'
+                        })
+                                .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                    console.log('Response', response); // LOG dans Console Javascript
+                                    $('#amour').html(response.Amour);
+                                    $('#sante').html(response.Sante);
+                                    $('#travail').html(response.Travail);
+
+                                })
+                                .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                                    console.log('Error', error); // LOG dans Console Javascript
+                                    alert("Erreur lors de l'appel AJAX");
+                                })
+                                .always(function () { // Fonction toujours appelée             
+                                });
+                    } else {
+                            alert("Veuillez remplir tous les champs");
+                    }
                 });
                 
                 //appel ajax pour finir la consultation  :
@@ -190,5 +228,10 @@
         </script>
 
     </body>
+    
+    <footer>
+    <hr>
+      <code> Copyright (c) 2021 Groupe de Binomes B3405-B3406  </code>
+    </footer>
 
 </html>

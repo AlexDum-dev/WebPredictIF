@@ -26,52 +26,25 @@
             <br>
             <br>
             <h1 class = "bienvenue"> Bienvenue </h1>
-            <div id="presentationClient"></div>
+            <div class="presClient" id="presentationClient"></div>
             <br>
         </div>
-
-        <div>
-
-            <h2> <U> Profil Astral </U> </h2>
-            <h6> Signe Zodiaque             : </h6> <div id="signeZodiaque"></div>
-            <h6> Signe Astrologique chinois : </h6> <div id="signeAstroChinois"></div>
-            <h6> Couleur Porte Bonheur      : </h6> <div id="couleurPorteBonheur"></div>
-            <h6> Animal Totem               : </h6> <div id="animalTotem"></div>
-
-        </div>
-
+        <h2 class="titreProfilAstral"> Profil Astral  </h2>
+        <section class="profilAstral">
+            <div>
+                <h3> Signe Zodiaque             : </h3> <p class="spec" id="signeZodiaque"></p> </h3>
+                <h3> Signe Astrologique chinois : </h3> <p class="spec" id="signeAstroChinois"></p>
+            </div>
+            <div>
+                <h3> Couleur Porte Bonheur      : </h3> <p class="spec" id="couleurPorteBonheur"></p>
+                <h3> Animal Totem               : </h3> <p class="spec" id="animalTotem"></p>
+            </div>
+        </section>
         <section class="grid">
             <div>
                 <h3>Prendre un rendez vous</h3>
             </div>
         </section>
-
-        <section class = "medium">
-            <div>
-                <h4> Mme Irma</h4>
-                <button id="bouton-RDVIrma"><img  src="images/madame_irma.png" width="100%" alt="banner"></button>
-            </div>
-
-            <div>
-                <h4> Mr M</h4>
-                <button id="bouton-RDVM"><img src="images/MonsieurM.jpg" width="100%" alt="banner"></button>
-            </div>
-
-            <div>
-                <h4> Serena </h4>
-                <button id="bouton-RDVSerena"><img src="images/Serena.jpg" width="100%" alt="banner"></button>
-            </div>
-
-            <div>
-                <h4> Gwenaëlle </h4>
-                <button id="bouton-RDVGwen"><img src="images/gwen.png" width="100%" alt="banner"></button>
-            </div>
-
-            <div>
-                <h4> Endora </h4>
-                <button id="bouton-RDVEndora"><img src="images/Endora.png" width="100%" alt="banner"></button>
-            </div>
-        </section>   
 
         <table id="tabMed" border="3" width="100%" align="center">
             <tr>
@@ -97,7 +70,7 @@
                         .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
                             console.log('Response', response); // LOG dans Console Javascript
                             $('#presentationClient').html(response.prenom + " " + response.nom);
-                            $('#signeZodiapresentationClientque').html(response.signeZodiaque);
+                            $('#signeZodiaque').html(response.signeZodiaque);
                             $('#signeAstroChinois').html(response.signeAstroChinois);
                             $('#couleurPorteBonheur').html(response.couleurPorteBonheur);
                             $('#animalTotem').html(response.animalTotem);
@@ -190,5 +163,8 @@
 
 
     </body>
-
+<footer>
+    <hr>
+      <code> Copyright (c) 2021 Groupe de Binomes B3405-B3406 </code>
+</footer>
 </html>
