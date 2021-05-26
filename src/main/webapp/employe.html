@@ -1,4 +1,4 @@
-!doctype html>
+<!doctype html>
 
 <!-- this is a comment for human! -->
 
@@ -10,6 +10,14 @@
     <title> Bienvenue </title>
     <link rel="stylesheet" href="css/masterIndex.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+            h1 { text-align: center; }
+            .highcharts-container {
+                max-width: 800px;
+                height: 400px;
+                margin: 1em auto;
+            }
+        </style>
   </header> 
 
   <body>
@@ -36,9 +44,402 @@
     <div id="notif"></div>
     <div id="nomClient"></div>
     <div id="historique"></div>
-    <button id="ready" class="bouton-consultation" style="display: none;">Je suis pret</button>
+        
+        <!--<a class="boutStat" href="Statistiques.html"> Voir statistiques</a>-->
+
+
+    <br>
+    <button id="ready" class="bouton-pret" style="display: none;">Je suis pret</button>
     <br>
     <br>
+    
+    <h3>Démonstrat'IF &ndash; Statistiques</h3>
+        
+        <div id="container-1" class="highcharts-container"></div>
+        <div id="container-2" class="highcharts-container"></div>
+        
+
+        
+        
+
+
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript">
+
+
+            var proportionChartData = {
+                    label: 'Nombre de consultations',
+                    data: [
+                        {
+                            name: '',
+                            y: 20
+                        }]
+                };
+
+          
+            
+            
+            
+                //Nombre de consultations par employe
+                //buildBarChart1('container-1');
+                buildPieChart1('container-1',proportionChartData)
+                
+               
+                //Nombre de consultations par medium
+               // buildBarChart2('container-2');
+                buildPieChart2('container-2',proportionChartData);
+
+// -------------------------------------------------------- DECOMMENTER LA METHODE POUR VOIR LE RESULTAT DU CHART BAR---------------------------------------------
+            //Nombre de consultations par employé
+            /*function buildBarChart1(container) {
+                $(document).ready(function () {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'statsEmploye'
+                        },
+                        dataType: 'json',
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                var monTableau1 = [];
+                                var monTableau2 = [];
+                                for (var i = 0; i < response.length; i++) {
+                                    monTableau1.push(response[i].prenom + " " + response[i].nom);
+                                    monTableau2.push(response[i].nbConsultation);
+                                };
+                                
+                                //Eviter les doublons
+                                const filterArray1 = monTableau1.filter(function (ele, pos) {
+                                    return monTableau1.indexOf(ele) === pos;
+                                });
+                                const filterArray2 = monTableau2.filter(function (ele, pos) {
+                                    return monTableau2.indexOf(ele) === pos;
+                                });
+                                //Highcharts
+                                Highcharts.chart(container, {
+                                    colors: [ '#551054', 'ecd8e9', '#D8BFD8','#9370DB','6050dc','f0dbff'],
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    title: {
+                                        text: 'Nombre de consultations par employé'
+                                    },
+                                    subtitle: {
+                                        text: 'Source: Predictif'
+                                    },
+                                    xAxis: {
+                                        categories: filterArray1
+                                    },
+                                    yAxis: {
+                                        title: {
+                                            text: 'Nombre de consultations'
+                                        },
+                                        categories: filterArray2.sort()
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    series: [{name: 'Données', data: filterArray2.sort()}]
+                                });
+                            },
+                                    );
+                });
+            }*/
+            
+            
+            function buildPieChart1(container, graphData) {
+                
+                $(document).ready(function () {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'statsEmploye'
+                        },
+                        dataType: 'json',
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+
+                                var monTableau1 = [];
+                                var monTableau2 = [];
+                                var tmp=0;
+                                for (var i = 0; i < response.length; i++) {
+                                    monTableau1.push(response[i].prenom + " " + response[i].nom);
+                                    monTableau2.push(response[i].nbConsultation);
+                                };
+                                
+                                                         
+                                //Eviter les doublons des employés
+                                const filterArray1 = monTableau1.filter(function (ele, pos) {
+                                    return monTableau1.indexOf(ele) === pos;
+                                });
+
+                                const filterArray2 = monTableau2.filter(function (ele, pos) {
+                                    return monTableau2.indexOf(ele) === pos;
+                                });
+                
+                              for (var i = 0; i<response.length; i++)
+                                {
+                                    var tmp = {"name":monTableau1[i], "y": monTableau2[i]}
+                                    proportionChartData.data[i] = tmp;
+                                }
+                                
+                
+                //Highcharts
+                Highcharts.chart(container, {
+                    
+                    chart: {
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Nombre de consultations par employe'
+                    },
+
+                    subtitle: {
+                        text: 'Source: Predictif'
+                    },
+                    xAxis: {
+
+                        categories: filterArray1
+
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Nombre de consultations'
+                        },
+                        categories: filterArray2.sort()
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{ name : graphData.labels,data : graphData.data}]
+                     
+                });            
+                });
+
+            });
+        }
+      
+      //Nombre de consultations par medium
+      
+      // -------------------------------------------------------- DECOMMENTER LA METHODE POUR VOIR LE RESULTAT DU CHART BAR---------------------------------------------
+            /*function buildBarChart2(container) {
+            $(document).ready(function () {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'statsMedium'
+                        },
+                        dataType: 'json'
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                var monTableau1 = [];
+                                var monTableau2 = [];
+                                var tmp=0;
+                                var tmp2=0;
+                                var maxi=0;
+                                for (var i = 0; i < response.length; i++) {
+                                    if(response[i].nbConsultation)
+                                    monTableau1.push(response[i].denomination);
+                                    monTableau2.push(response[i].nbConsultation);
+                                };
+                                
+                                for(var i = (response.length-1) ; i>=1 ; i--)
+                                      {
+                                              for(var j = 0 ; j<i ; j++){
+                                              if(monTableau2[j] > monTableau2[j+1])
+                                              {
+                                                      /*tmp = monTableau1[i-j-1];
+                                                      monTableau1[i-j-1]=monTableau1[i-j];
+                                                      monTableau1[i-j]=tmp;*/
+                                                      //tmp2 = monTableau2[j+1];
+                                                      //monTableau2[j+1]=monTableau2[j];
+                                                      //monTableau2[j]=tmp2;
+                                              /*}
+                                          }
+                                      }
+                                console.log(monTableau1)
+                                console.log(monTableau2)
+                                var monTableauOrdonnee = [];
+                                
+                                monTableauOrdonnee[0]=0;
+                                maxi =Math.max(...monTableau2);
+                                var tmp=-(maxi-2);
+                                for(var i=1 ; j<=maxi; j++)
+                                {
+                                    monTableauOrdonnee[i]=tmp;
+                                    tmp++;
+                                }
+                                
+                                
+                                //Eviter les doublons des mediums
+                                const filterArray1 = monTableau1.filter(function (ele, pos) {
+                                    return monTableau1.indexOf(ele) === pos;
+                                });
+                                const filterArray2 = monTableau2.filter(function (ele, pos) {
+                                    return monTableau2.indexOf(ele) === pos;
+                                });
+                                //Highcharts
+                                Highcharts.chart(container, {
+                                    colors: [ '#551054', 'ecd8e9', '#D8BFD8','#9370DB','6050dc','f0dbff'],
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    title: {
+                                        text: 'Nombre de consultations par medium'
+                                    },
+                                    subtitle: {
+                                        text: 'Source: Predictif'
+                                    },
+                                    xAxis: {
+                                        categories: monTableau1
+                                    },
+                                    yAxis: {
+                                        title: {
+                                            text: 'Nombre de consultations'
+                                        },
+                                        categories: monTableauOrdonnee.sort()
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    series: [{name: 'Données', data: monTableau2}]
+                                });
+                            },
+                                    );
+                });
+            }*/
+            
+            
+            function buildPieChart2(container, graphData) {
+                
+                $(document).ready(function () {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'statsMedium'
+                        },
+                        dataType: 'json',
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+
+                                var monTableau1 = [];
+                                var monTableau2 = [];
+                                for (var i = 0; i < response.length; i++) {
+                                    monTableau1.push(response[i].denomination);
+                                    monTableau2.push(response[i].nbConsultation);
+                                };
+                         
+                                //Eviter les doublons des employés
+                                const filterArray1 = monTableau1.filter(function (ele, pos) {
+                                    return monTableau1.indexOf(ele) === pos;
+                                });
+
+                                const filterArray2 = monTableau2.filter(function (ele, pos) {
+                                    return monTableau2.indexOf(ele) === pos;
+                                });
+                
+                              for (var i = 0; i<response.length; i++)
+                                {
+                                    var tmp = {"name":monTableau1[i], "y": monTableau2[i]}
+                                    proportionChartData.data[i] = tmp;
+                                }
+                                
+                
+                //Highcharts
+                Highcharts.chart(container, {
+                    
+                    chart: {
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Nombre de consultations par medium'
+                    },
+
+                    subtitle: {
+                        text: 'Source: Predictif'
+                    },
+                    xAxis: {
+
+                        categories: filterArray1
+
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Nombre de consultations'
+                        },
+                        categories: filterArray2.sort()
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{ name : graphData.labels,data : graphData.data}]
+                     
+                });            
+                });
+
+            });
+        }
+      
+        //Affichage du top5 
+        $(document).ready(function () {
+
+            // Appel AJAX
+            $.ajax({
+                url: './ActionServlet',
+                method: 'POST',
+                data: {
+                    todo: 'getTop5'
+                },
+                dataType: 'json'
+            })
+                    .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response', response); // LOG dans Console Javascript
+
+                        
+                        $('#med1').html(response.numero0);
+                        $('#med2').html(response.numero1);                      
+                        $('#med3').html(response.numero2);
+                        $('#med4').html(response.numero3);    
+                        $('#med5').html(response.numero4);    
+
+                    });
+        });
+
+        </script>
+
+        <h2>Nos Top Médium</h2>
+        
+        <table class="tabtop5" id="tabtop5" border="3" width="100%" align="center">
+            <tr>
+                <th id="denomination">Dénomination</th></tr>
+                
+            <tr>
+                <tr id="med1"></tr>
+                <tr id="med2"></tr>
+                <tr id="med3"></tr>
+                <tr id="med4"></tr>
+                <tr id="med5"></tr>
+                <tr>
+                            
+        </table>
+
     <!--<button class="bouton-aide">Besoin d'aide?</button>-->
     
     <script>
